@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Change Password{% endblock title %}
+
+{% block content %}
+<div class="container col-sm-3">
+              <form accept-charset="UTF-8" role="form" method="POST" action="">
+                {% csrf_token %}
+                <fieldset>
+                <h4>Changr Your password</h4>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="Old Password" id="password" name="old_password" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="New Password" id="pass" name="new_password" required />
+                  </div>
+                  <input class="btn btn-lg btn-success btn-block" type="submit" value="Change">
+                </fieldset>
+              </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,107 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agro-Community</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Faster+One|Lobster|Sonsie+One|Pacifico|Roboto:400,700i,900" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href=" {% static 'css/swiper.min.css' %}">
+  <link rel="stylesheet" href=" {% static 'css/style.css' %}">
+
+  <script src=" {% static 'js/jquery.min.js' %}"></script>
+  <script src=" {% static 'js/typed.min.js' %}"></script>
+  <script src=" {% static 'js/progressbar.js' %}"></script>
+  <script src=" {% static 'js/parallax.min.js' %}"></script>
+  <script src=" {% static 'js/waypoints.min.js' %}"></script>
+  <script src=" {% static 'js/swiper.min.js' %}"></script>
+  <script src=" {% static 'js/js.js' %}"></script>
+
+<style>
+.myNav::before{
+  content: '';
+  display: table;
+  clear: both;
+} 
+.jumbotron{
+  /*background: url('{% static 'img/mango foska.jpg' %}') no-repeat;*/
+  background-color: #fff;
+  background-size: cover;
+  padding: 16rem 6rem;
+  margin-bottom: 0rem;
+  border-radius: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+</style>
+<div class="jumbotron">
+  <a href="{% url 'home' %}"><img class="float-left" src="{% static "img/logo.png" %}"></a>
+  <img class="float-md-none" src="{% static "img/header-bg.jpg" height:"110px"%}">
+  <div class="d-flex flex-row-reverse">
+</div> 
+  </div>
+</head>
+<header class="d-flex justify-content-end" style="background-color: #043613;
+">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+  <!--<a class="navbar-brand" href="{% url 'home' %}" style="float: left; "> <img src="{% static "img/logo.png" %}" width="150" height="40" alt="Home"></a>--><!--display: block; width: 30%;-->
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent" style="float: right; width: 66%; text-align: right;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+    <a href="{% url 'home' %}" class="btn btn-outline-info">হোম</a>
+    <a href="{% url 'posts' 1 %}" class="btn btn-outline-info">ফসলের  সমস্যা সমাধান</a>
+    <a href="{% url 'news_technology' 1 %}" class="btn btn-outline-info">তথ্য এবং প্রযুক্তি</a>
+    <a href="{% url 'new_posts' %}" class="btn btn-outline-info">নতুন পোস্ট</a>
+    <a href="{% url 'experience' 1 %}" class="btn btn-outline-info">অভিজ্ঞতা</a>
+
+    {% if not user.is_authenticated %}
+      <a class="btn btn-outline-info" href="{% url 'login_view' %}">লগইন</a>
+    {% endif %}
+      </li>
+
+      {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle btn btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user }}</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item text-info" href="{% url 'user_problem' %}">পোস্টসমুহ</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-info" href="{% url 'logout' %}">লগ আউট</a>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+    <!-- =============  Search ============= --> 
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    -->
+  </div>
+  </nav>
+</header>
+
+<body>
+{% block content %}
+{% endblock content%}
+</body>
+
+<div class="active scrollToTop position-fixed text-center rounded-circle">
+	<span class="d-block rounded-circle"><i class="fa fa-angle-up"></i></span>
+</div>
+
+</html>

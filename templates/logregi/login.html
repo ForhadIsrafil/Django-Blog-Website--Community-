@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+<style>
+body{
+      background-image: url("../static/img/banner/5.jpg");
+    background-repeat: no-repeat;
+    width: auto;
+    height: auto;
+}
+</style>
+
+<header>
+ <p style="height: 50px">&nbsp;</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 panel-login">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Please Login</h3>
+            </div>
+            <div class="panel-body">
+              <p style="color:red;text-align: center;">
+                  {{ message }}
+              </p>
+              <form accept-charset="UTF-8" role="form" method="POST" action="{% url 'login_view' %}">
+                {% csrf_token %}
+                <fieldset>
+                  <div class="form-group">
+                    <input type="email" class="form-control input-lg" placeholder="Email address" id="email" name="email" required="" />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="password" id="pass" name="password" required="" />
+                  </div>
+                  <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+                </fieldset>
+              </form>
+              <span>Don't have account? <a href="{% url 'registration_view' %}">Register here</a>.</spanp>
+{#              <p><a href="{% url 'base:forgot_password' %}" class="text-warning">Forgot password</a></p>#}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+{% endblock content %}

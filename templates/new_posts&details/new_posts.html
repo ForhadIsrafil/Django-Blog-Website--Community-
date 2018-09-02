@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}New_Posts{% endblock title %}
+
+{% block content %}
+<br>
+<div class="container col-sm-6">
+{% for problem_texts in lists %}
+<div class="border border-info, shadow p-2 mb-3 rounded">
+<span style="color:#CD5C5C" class="fa fa-user-edit text-success">{{ problem_texts.user }}</span><br>
+<span style="color:#CD5C5C" class="far fa-clock">{% load tz %}{{ problem_texts.comment_added_date|timezone:"Asia/Dhaka" }}</span><br>
+<a class="text-info" href="{% url 'new_posts_dnr' problem_texts.id %}">{{ problem_texts.title }}</a>
+</div>
+{% endfor %}
+<nav>
+{% if lists.has_other_pages %}
+  <ul class="pagination">
+    {% if lists.has_previous %}
+      <li class="page-item text-success"><a class="page-link text-success" href="?page={{ lists.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link text-success">Previous</span></li>
+    {% endif %}
+	
+
+    {#<!--{% if lists.number == lists.number %} for only current page number variable {{lists.number}}-->#}
+    <!--{% for i in lists.paginator.page_range %}
+    {% endfor %}-->
+      {% if lists.number == lists.number %}
+        <li class="page-item active"><span class="page-link text-success" style="background-color: #ffffff;border-color: #28a745;">{{ lists.number }} <span class="sr-only">(current)</span></span></li>
+
+        <li class="page-item"><span class="page-link text-success" style="background-color: #ffffff;">Total:{{ lists.paginator.num_pages }}</span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link text-success" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+
+
+    {% if lists.has_next %}
+      <li class="page-item"><a class="page-link text-success" href="?page={{ lists.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link text-success">Next</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</nav>
+</div>
+{% endblock content %}

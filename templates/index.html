@@ -1,0 +1,99 @@
+﻿{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<main class="mainContent">
+    <section id="home">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/2.jpg" alt="">
+                    <div class="landSlide">
+                        <div id="scene" class="parallax" data-hover-only="true" data-relative-input="true">
+                            <div class="layer" data-depth="2">
+                            </div>
+                        </div>
+                        <div class="titleArea position-relative">
+                            <h1 class="mainTitle text-uppercase position-relative my-0 mx-auto d-inline-block">
+                                <span>A</span>
+                                <span>G</span>
+                                <span>R</span>
+                                <span>O</span>
+                                <br>
+                                <span>C</span>
+                                <span>O</span>
+                                <span>M</span>
+                                <span>M</span>
+                                <span>U</span>
+                                <span>N</span>
+                                <span>I</span>
+                                <span>T</span>
+                                <span>Y</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/4.jpg" alt="">
+                </div>
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/3.jpg" alt="">
+                </div>
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/4.jpg" alt="">
+                </div>
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/5.jpg" alt="">
+                </div>
+                <div class="swiper-slide text-center">
+                    <img class="img-fluid" src="../static/img/banner/6.jpg" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="bannerPrev"></div>
+            <div class="bannerNext"></div>
+        </div>
+    </section>
+    <div class="about-section">
+		<div class="container">
+			<div class="site-title text-center">
+				<h3></h3>
+				<span></span>
+			</div>
+			<div class="about-inner-section">
+			    <div class="col-md-6 about-right">
+				<img src="../static/img/dgfarmer.JPG" alt=" ">
+			</div>
+				<div class="col-md-6 about-inner-column">
+					<h4>কৃষি যোগাযোগ, কৃষি-প্রযুক্তি , কৃষি তথ্য আদান-প্রদান এবং ফসলের সমস্যা সমাদানের জন্য কৃষিকমিউনিটি একটি অনন্য মাধ্যম।</h4>
+					<span>কৃষিকমিউনিটি হল একটি কমিউনিটি ওয়েবসাইট যা কৃষক এবং কৃষিবিদদের জন্য।. যেখানে কৃষক ও কৃষিবিদরা কৃষি তথ্য, কৃষি-প্রযুক্তি এবং কৃষি সমস্যার সমাধান প্রদান করে একে-অন্যকে সহায়তা করে।. কৃষি যোগাযোগ, কৃষি-প্রযুক্তি , কৃষি তথ্য আদান-প্রদান এবং ফসলের সমস্যা সমাদানের জন্য কৃষিকমিউনিটি একটি অনন্য মাধ্যম।</span>
+					<ul>
+						<!--<li></li>
+						<li></li>
+						<li></li>-->
+					</ul>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<div class="scrollToTop position-fixed text-center rounded-circle">
+	<span class="d-block rounded-circle"><i class="fa fa-angle-up"></i></span>
+</div>
+
+<footer class="fixed-bottom footer">
+	<div class="ftrTop">
+		<div class="container">
+			<div class="text-center py-3 ftrTop">
+				<ul class="ftrTxt">
+				    <ul><a href="{% url 'about_contact' %}" style="color: #155724">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp<i class="fas fa-user-secret"></i> Developed_By</a></ul>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</footer>
+{% endblock content%}

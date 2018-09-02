@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br>
+<div class="container">
+{% if user.is_authenticated %}
+<div class="container" style="background-color: ;" >
+
+<h4>{{ problem_textd.title }}</h4>
+<span>{{ problem_textd.problem_text }}</span><br>
+<span style="color:#CD5C5C" class="far fa-clock">{% load tz %}{{ problem_textd.comment_added_date|timezone:"Asia/Dhaka" }}</span>
+</div>
+    <div class="container">
+        <form method="POST" action=".">{% csrf_token %}
+          <div class="form-group">
+            <label>Comment:</label>
+            <textarea style="width: 50%;height: 100px;padding: 12px 20px;border-radius: 10px;resize: none;"
+            class="form-control" rows="3" id="comment" name="ureply" required=""></textarea>
+          </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form><br>
+
+<h4>Your Reply Commnets: </h4>
+{% for user_p_replys in user_p_reply %}
+{% if problem_textd.id == user_p_replys.user_problem_id %}
+<div class="border border-success rounded, shadow p-2 mb-3 rounded w-50">
+<span class="fa fa-user-edit text-success">{{ user_p_replys.user }}</span><br>
+<span>{{ user_p_replys.problem_reply }}</span><br>
+<span style="color:#CD5C5C" class="far fa-clock">{% load tz %}{{ user_p_replys.comment_added_date|timezone:"Asia/Dhaka" }}</span><br>
+
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+</div>
+{% endblock content %}

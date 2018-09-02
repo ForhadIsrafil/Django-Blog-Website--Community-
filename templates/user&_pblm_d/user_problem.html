@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Users Problem{% endblock title %}
+
+{% block content %}
+<br>
+<!--<div class="text-right container">
+  <a href="" style="margin-right: 40px"><button class="btn btn-success">Change Password</button></a>
+</div>-->
+<div class="container">
+{% if user.is_authenticated %}
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="">
+                  <form method="POST" action=".">{% csrf_token %}
+                    <div class="form-group">
+                      <span>Post Your agro Problem</span>
+                      <input class="form-control" style="width: 80%;height: 30px;padding: 12px 20px;border-radius: 5px;resize: none;" type="title" name="title"  placeholder="Title Here...." maxlength="50" required><br>
+                      <textarea style="width: 80%;height: 100px;padding: 12px 20px;border-radius: 10px;resize: none;"
+                       class="form-control" placeholder="Text Here......." name="problem_text" required></textarea>
+                    </div>
+                      <button type="submit" class="btn btn-success">Post Problem</button><br>
+                      <p class="btn text-success"><!--{{ error_message }}--></p>
+                  </form>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="" style="border-left: 1px solid #eee; height: 500px;">
+                    <h4 class="text-success text-center">আপনার পোস্ট সমুহ</h4>
+                    {% for problem_texts in lists %}
+                    {% if problem_texts.user_id == user.id %}
+                    <ul>
+                    <a class="text-success" href="{% url 'user_problem_details' problem_texts.id %}">{{ problem_texts.title }}<br>{% load tz %}{{problem_texts.comment_added_date|timezone:"Asia/Dhaka" }}</a>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <hr>
+                <nav>
+                {% if lists.has_other_pages %}
+                  <ul class="pagination">
+                    {% if lists.has_previous %}
+                      <li class="page-item text-success"><a class="page-link text-success" href="?page={{ lists.previous_page_number }}">Previous</a></li>
+                    {% else %}
+                      <li class="page-item disabled"><span class="page-link text-success">Previous</span></li>
+                    {% endif %}
+                  
+
+                    {#<!--{% if lists.number == lists.number %} for only current page number variable {{lists.number}}-->#}
+                    <!--{% for i in lists.paginator.page_range %}
+                    {% endfor %}-->
+                      {% if lists.number == lists.number %}
+                        <li class="page-item active"><span class="page-link text-success" style="background-color: #ffffff;border-color: #28a745;">{{ lists.number }} <span class="sr-only">(current)</span></span></li>
+
+                        <li class="page-item"><span class="page-link text-success" style="background-color: #ffffff;">Total:{{ lists.paginator.num_pages }}</span></li>
+                      {% else %}
+                        <li class="page-item"><a class="page-link text-success" href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+
+
+                    {% if lists.has_next %}
+                      <li class="page-item"><a class="page-link text-success" href="?page={{ lists.next_page_number }}">Next</a></li>
+                    {% else %}
+                      <li class="page-item disabled"><span class="page-link text-success">Next</span></li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+                </nav>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+
+</div>
+{% endif %}
+{% endblock %}

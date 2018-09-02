@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="wrapper">
+   <!-- Sidebar -->
+   <div>
+      <div class="container">
+         <div class="row postprnt">
+            <div class="col-3" style="border-right: 5px solid #eee;; background: #fff; flex: 0 0 27%;">
+              <!-- =============  Post Lists ============= --> 
+               <div id="sidebar-wrapper">
+                  <p style="word-wrap: break-word;">&nbsp;</p>
+                  <ul class="sidebar-nav">
+                     {% for post in news_technology %}
+                     <h5><a class="info-success" style="font-size: 18px" href="{% url 'news_technology' post.id %}">{{ post.title }}</a></h5>
+                     {% endfor %}
+                  </ul>
+               </div>
+              <!-- =============  Post Pagination ============= --> 
+            <nav>
+            {% if lists.has_other_pages %}
+              <ul class="pagination">
+                {% if lists.has_previous %}
+                  <li class="page-item text-success"><a class="page-link text-success" href="?page={{ lists.previous_page_number }}">Previous</a></li>
+                {% else %}
+                  <li class="page-item disabled"><span class="page-link text-success">Previous</span></li>
+                {% endif %}
+               
+                {#<!--{% if lists.number == lists.number %} for only current page number variable {{lists.number}}-->#}
+                <!--{% for i in lists.paginator.page_range %}
+                {% endfor %}-->
+                  {% if lists.number == lists.number %}
+                    <li class="page-item active"><span c
+                      lass="page-link text-success" style="background-color: #ffffff;border-color: #28a745;">{{ lists.number }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link text-success" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+
+                {% if lists.has_next %}
+                  <li class="page-item"><a class="page-link text-success" href="?page={{ lists.next_page_number }}">Next</a></li>
+                {% else %}
+                  <li class="page-item disabled"><span class="page-link text-success">Next</span></li>
+                {% endif %}
+              </ul>
+            {% endif %}
+         </nav>
+            </div>
+              <!-- =============  Post Details ============= -->
+            <div class="col-9" style="flex: 0 0 73%;text-align: justify;">
+               <div class="">
+                  <div class="wrapper" style="inner-widthmargin-right: 50px;margin-left: auto;max-width: 960px;padding-right: 10px;
+                     padding-left: 10px;"><br>
+                     <img src="{{ get_details.im.url }}" style="width: 90%;height: 300px;"><br><br>
+                     <h5 class="text-justify"><b>{{ get_details.title }}</b></h5>
+                     <p>
+                      {% autoescape off %} {{ get_details.description }} {% endautoescape %}</p>
+                  </div>
+               </div>
+                <!-- =============  Post Users Comments ============= -->
+               <!--{% if user.is_authenticated %}
+               <div class="">
+                  <form method="POST" action=".">
+                     {% csrf_token %}
+                     <div class="form-group">
+                        <label>Comment:</label>
+                        <textarea style="width: 50%;height: 100px;padding: 12px 20px;border-radius: 10px;resize: none;"
+                           class="form-control" rows="3" id="comment" name="comment" maxlength="350" required=""></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-success">Submit</button>
+                  </form>
+                  <br>
+               </div>
+               {% endif %}
+               =============  comments are Here =============
+               {% for comment in comments %}
+               {% if postd.id == comment.posts_id %}
+               <div class="border col-sm-8 shadow mb-3 rounded">
+                  <span class="fa fa-user-edit text-success">{{ comment.user }}</span> :>  <span>{{ comment.comment_text }}</span><br>
+                  <span style="color:#CD5C5C" class="far fa-clock">{{ comment.comment_added_date }}</span><br>
+               </div>
+               {% endif %}
+               {% endfor %} -->
+            </div>
+               
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!--<br>
+   <div class="container">
+    <div class="container-fluid">
+     <div class="row">
+       <div>
+         <h4>Problem list</h4>
+        {% for post in allpost %}
+        <h5><a class="text-success" href="{% url 'posts_details' post.id %}">{{ post.t }}</a></h5>
+        {% endfor %}
+       </div>
+   
+   </div>
+   </div>
+   </div>-->
+{% endblock content %}

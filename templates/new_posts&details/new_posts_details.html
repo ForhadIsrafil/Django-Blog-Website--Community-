@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}New_Posts_Details{% endblock title %}
+
+{% block content %}
+<br>
+<body style="background-color: ">
+<div class="container">
+<div class="border border-success rounded, shadow p-2 mb-3 rounded" style="background-color: #fff;">
+<span style="color:#CD5C5C" class="fa fa-user-edit">{{ problem_text.user }}</span><br>
+<span style="color:#CD5C5C" class="far fa-clock">{% load tz %}{{ problem_text.comment_added_date|timezone:"Asia/Dhaka" }}</span>
+<h5>{{ problem_text.title }}</h5>
+<span>{{ problem_text.problem_text }}</span>
+</div>
+
+{% if user.is_authenticated %}
+<div>
+  <form method="POST" action=".">{% csrf_token %}
+    <div class="form-group">
+      <textarea style="width: 50%;height: 60px;border-radius: 5px;resize: none;"
+       class="form-control" placeholder="Reply Here......." name="problem_reply" required=""></textarea>
+       <br><button type="submit" class="btn btn-success col-xs-4">Reply</button><br>
+    </div>
+      
+  </form>
+</div>
+{% endif %}
+
+{% for user_p_replys in user_p_reply %}
+{% if problem_text.id == user_p_replys.user_problem_id %}
+<div>
+<div class="border border-success rounded, shadow p-2 mb-3 rounded w-50" style="background-color: #fff;">
+<span class="fa fa-user-edit text-success">{{ user_p_replys.user }}</span>  :> &nbsp<span>{{ user_p_replys.problem_reply }}</span>
+<br>
+<span style="color:#CD5C5C" class="far fa-clock">{% load tz %}{{ user_p_replys.comment_added_date|timezone:"Asia/Dhaka" }}</span><br>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+</body>
+{% endblock content %}
+
+<!-- {% for comment in comments %}
+{% if postd.pk == comment.posts_id %}
+<div class="border border-info rounded, shadow p-2 mb-3 rounded">
+<h4><span style="color:#CD5C5C" class="fa fa-user-edit">{{ comment.user }}</span></h4>
+<span style="color:#CD5C5C" class="far fa-clock">{{ comment.comment_added_date }}</span>
+<p>{{ comment.comment_text }}</p>
+<span class="glyphicons glyphicons-parents"></span>
+</div>
+{% endif %}
+{% endfor %} -->

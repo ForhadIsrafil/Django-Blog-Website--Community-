@@ -1,0 +1,15 @@
+/* Scss Document */
+@media only screen and (max-width: 767px) {
+  .navArea .navBarHdr {
+    width: 100%; }
+  .navArea .navBarLink {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll; }
+    .navArea .navBarLink ul li {
+      display: block;
+      border-top: 1px solid #999;
+      padding: 5px 0; } }

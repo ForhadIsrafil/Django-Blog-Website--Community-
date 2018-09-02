@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<br>
+<div class="container">
+				<h5 class="text-justify">{{ postd.t }}</h5>
+                <img src="{{ postd.im.url }}" style="width: 90%;height: 300px;"><br>
+				<span>{{ postd.d }}</span>
+
+{% if user.is_authenticated %}
+    <div class="container">
+        <form method="POST" action=".">{% csrf_token %}
+          <div class="form-group">
+            <label>Comment:</label>
+            <textarea style="width: 50%;height: 100px;padding: 12px 20px;border-radius: 10px;resize: none;"
+            class="form-control" rows="3" id="comment" name="comment" maxlength="350" required=""></textarea>
+          </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form><br>
+    </div>
+{% endif %}
+
+{% for comment in comments %}
+{% if postd.id == comment.posts_id %}
+<div class="border col-sm-8 shadow mb-3 rounded">
+<span class="fa fa-user-edit text-success">{{ comment.user }}</span> :>  <span>{{ comment.comment_text }}</span><br>
+<span style="color:#CD5C5C" class="far fa-clock">{{ comment.comment_added_date }}</span><br>
+
+</div>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock content %}
